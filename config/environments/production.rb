@@ -92,5 +92,5 @@ Rails.application.configure do
   reconnect_attempts: 1,
   error_handler: ->(method:, returning:, exception:) {
     Rails.logger.error "Redis error: #{exception.message}"
-  }
+  }}
 end
