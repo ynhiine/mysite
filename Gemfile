@@ -63,3 +63,4 @@ group :test do
 end
 gem "cssbundling-rails", "~> 1.3.3"
 gem "bootstrap", "~> 5.3.0"
+gem "redis", ">= 4.0.1"
