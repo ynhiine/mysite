@@ -1,0 +1,41 @@
+<h1>New product</h1>
+<%= render "form", product: @product %>
+
+<!-- Nút Cancel -->
+<%= link_to "Cancel", products_path, class: "btn-cancel" %>
+
+<%= form_with model: @product do |form| %>
+  <div>
+    <%# <%= form.label :name %> 
+    <%# <%= form.text_field :name %> 
+  </div>
+
+  <div>
+    <%# <%= form.submit %> 
+  </div>
+<% end %>
+<style>
+
+  /* Nút Cancel */
+.btn-cancel {
+  display: block; /* Đảm bảo nút được căn giữa */
+  width: 200px; /* Độ rộng của nút */
+  padding: 10px;
+  font-size: 1.2rem;
+  text-align: center; /* Căn giữa văn bản */
+  margin: 20px auto; /* Căn giữa nút */
+  border: 3px solid red; /* Viền đỏ */
+  background-color: transparent; /* Nền trong suốt */
+  color: red; /* Màu chữ đỏ */
+  border-radius: 5px; /* Bo tròn viền */
+  text-decoration: none; /* Loại bỏ gạch chân */
+  transition: background-color 0.3s, color 0.3s; /* Hiệu ứng chuyển màu khi hover */
+}
+
+/* Hiệu ứng hover cho nút Cancel */
+.btn-cancel:hover {
+  background-color: red; /* Nền đỏ khi hover */
+  color: white; /* Chữ trắng khi hover */
+}
+
+</style>

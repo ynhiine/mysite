@@ -1,0 +1,117 @@
+<style>
+    body {
+      background-color: #ffc0cb; /* Thay đổi nền màu hồng nhạt */
+      font-family: 'Arial', sans-serif;
+    }
+  
+    .product {
+      max-width: 900px;
+      margin: 50px auto;
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+  
+    .product-info {
+      margin-top: 30px;
+    }
+  
+    .product h1 {
+      font-size: 2.5rem;
+      color: #333;
+      font-weight: 600;
+      text-align: center; /* Căn giữa tên sản phẩm */
+    }
+  
+    .product-description {
+      font-size: 1.1rem;
+      color: #555;
+      line-height: 1.6;
+      margin-top: 15px;
+    }
+  
+    .product img {
+      width: 100%; /* Giữ cho hình ảnh chiếm toàn bộ chiều rộng của phần chứa */
+      max-width: 500px; /* Giới hạn chiều rộng tối đa của hình ảnh */
+      height: auto; /* Đảm bảo tỷ lệ khung hình của hình ảnh được giữ nguyên */
+      object-fit: cover; /* Đảm bảo hình ảnh vẫn giữ được độ phân giải khi thu nhỏ */
+      border-radius: 10px; /* Bo góc cho hình ảnh */
+      margin: 0 auto 20px; /* Căn giữa hình ảnh và thêm khoảng cách dưới ảnh */
+      display: block; /* Đảm bảo hình ảnh là block element để có thể căn giữa */
+    }
+  
+    .btn-back {
+      background-color: transparent;
+      color: #007bff;
+      border: 2px solid #007bff;
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+  
+    .btn-back:hover {
+      background-color: #007bff;
+      color: white;
+    }
+  
+    .action-btns {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+  
+    .action-btns a,
+    .action-btns button {
+      padding: 12px 20px;
+      font-size: 1.1rem;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+  
+    .action-btns a {
+      background-color: #007bff;
+      color: white;
+      text-decoration: none;
+    }
+  
+    .action-btns a:hover {
+      background-color: #0056b3;
+    }
+  
+    .action-btns button {
+      background-color: #e74c3c;
+      color: white;
+      border: none;
+    }
+  
+    .action-btns button:hover {
+      background-color: #c0392b;
+    }
+  </style>
+  
+  <div class="container">
+    <p><%= link_to "Back", products_path, class: "btn btn-back" %></p>
+  
+    <section class="product">
+      <%= image_tag @product.featured_image if @product.featured_image.attached? %>
+  
+      <section class="product-info">
+        <% cache @product do %>
+          <h1><%= @product.name %></h1>
+          <p class="product-description"><%= @product.description %></p>
+        <% end %>
+  
+        <%= render "inventory", product: @product %>
+  
+        <% if authenticated? %>
+          <div class="action-btns">
+            <%= link_to "Edit", edit_product_path(@product), class: "btn btn-primary" %>
+            <%= button_to "Delete", @product, method: :delete, data: { turbo_confirm: "Are you sure?" }, class: "btn btn-danger" %>
+          </div>
+        <% end %>
+      </section>
+    </section>
+  </div>
+  

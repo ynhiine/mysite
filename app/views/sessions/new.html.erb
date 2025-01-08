@@ -1,0 +1,59 @@
+<div class="container mt-5">
+  <!-- Alert messages -->
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+
+  <!-- Login form -->
+  <div class="card shadow-sm" style="background-color: #ffe6f2; border-radius: 10px;">
+    <div class="card-body">
+      <h4 class="card-title text-center mb-4" style="color: #3969c9; font-weight: bold;">Sign In</h4>
+      <%= form_with url: session_path, class: "needs-validation", novalidate: true do |form| %>
+        <div class="mb-3">
+          <%= form.label :email_address, "Email Address", class: "form-label", style: "font-weight: 600;" %>
+          <%= form.email_field :email_address, class: "form-control", required: true, autofocus: true, autocomplete: "username", placeholder: "Enter your email address", value: params[:email_address] %>
+        </div>
+        <div class="mb-3">
+          <%= form.label :password, "Password", class: "form-label", style: "font-weight: 600;" %>
+          <%= form.password_field :password, class: "form-control", required: true, autocomplete: "current-password", placeholder: "Enter your password", maxlength: 72 %>
+        </div>
+        <div class="d-grid">
+          <%= form.submit "Sign In", class: "btn btn-primary btn-block", style: "background-color: #4267B2; border: none;" %>
+        </div>
+      <% end %>
+      <hr>
+      <div class="text-center">
+        <%= link_to "Forgot password?", new_password_path, class: "link-primary", style: "color: #4267B2;" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  
+
+  /* Toàn bộ nền trang màu hồng nhạt */
+  body {
+    background-color: #ffe6f2;
+  }
+
+  /* Nền nút chuyển sang màu xanh dương khi hover */
+  .btn-primary:hover {
+    background-color: #365899 !important;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Đặt padding cho container để form dễ nhìn hơn */
+  .container {
+    max-width: 400px;
+    margin: auto;
+  }
+
+</style>

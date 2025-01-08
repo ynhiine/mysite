@@ -1,0 +1,96 @@
+
+  <div class="container mt-5">
+
+    <!-- Tiêu đề -->
+    <h1 class="text-center mt-4 mb-4 fw-bold display-5">Product Form</h1>
+
+    <!-- Form Container -->
+    <div class="form-container">
+      <%= form_with(model: product, local: true) do |form| %>
+        
+        <!-- Hiển thị lỗi nếu có -->
+        <% if product.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(product.errors.count, "error") %> prohibited this product from being saved:</h2>
+            <ul>
+              <% product.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <!-- Name Field -->
+        <div class="mb-3">
+          <%= form.label :name, class: "form-label" %>
+          <%= form.text_field :name, class: "form-control" %>
+        </div>
+
+        <!-- Price Field -->
+        <div class="mb-3">
+          <%= form.label :price, class: "form-label" %>
+          <%= form.number_field :price, class: "form-control" %>
+        </div>
+
+        <!-- Description Field -->
+        <div class="mb-3">
+          <%= form.label :description, class: "form-label" %>
+          <%= form.rich_text_area :description, class: "form-control" %>
+        </div>
+
+        <!-- Featured Image Field -->
+        <div class="mb-3">
+          <%= form.label :featured_image, class: "form-label" %>
+          <%= form.file_field :featured_image, accept: "image/*", class: "form-control" %>
+        </div>
+
+        <!-- Inventory Count Field -->
+        <div class="mb-3">
+          <%= form.label :inventory_count, class: "form-label" %>
+          <%= form.number_field :inventory_count, class: "form-control" %>
+        </div>
+
+        <!-- Submit Button -->
+        <div>
+          <%= form.submit "Save Product", class: "btn btn-primary btn-submit" %>
+        </div>
+        
+      <% end %>
+    </div>
+
+  </div>
+
+  <style>
+    /* Tùy chỉnh chung cho form */
+    body {
+      background-color: #ffc0cb; /* Nền nhẹ nhàng */
+      font-family: 'Arial', sans-serif;
+    }
+
+    .form-container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Tạo bóng nhẹ cho form */
+      padding: 30px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Tùy chỉnh cho nút submit */
+    .btn-submit {
+      width: 100%;
+      padding: 10px;
+      font-size: 1.2rem;
+      border-radius: 5px;
+    }
+
+    /* Tùy chỉnh cho các thông báo lỗi */
+    #error_explanation {
+      background-color: #f8d7da;
+      border: 1px solid #f5c6cb;
+      color: #721c24;
+      padding: 15px;
+      border-radius: 5px;
+      margin-bottom: 15px;
+    }
+  </style>
