@@ -24,4 +24,4 @@ services:
         value: "nhi1107@gmail.com" # Thay bằng email của bạn
       - key: USER_PASSWORD
         value: "nhi1107@1" # Thay bằng mật khẩu của bạn
-    preDeployCommand: "bundle exec rails db:migrate"
+    
